@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="<%= peca ? `/gerente/pecas/modifica/${peca.id}?_method=PATCH` : '/gerente/pecas/cadastro' %>" method="<%= peca ? 'post' : 'post' %>"> Gerenciado pela entidade Gerente
+        <input type="hidden" name="_method" value="<%= peca ? 'PATCH' : 'POST' %>">
+
+        <label for="nome">Nome:
+            <input type="text" name="nome" id="nome" value="<%= peca ? peca.nome: "" %>" required>
+        </label>
+        <label for="descricao">Descricao:
+            <input type="text" name="descricao" id="descricao" value="<%= peca ? peca.descricao : "" %>" required>
+        </label>
+        <label for="preco">Preco:
+            <input type="number" name="preco" id="preco" value="<%= peca ? peca.preco : "" %>" required>
+        </label>
+        
+        <input type="submit" value="Cadastrar">
+    </form>
+    
+</body>
+</html>
