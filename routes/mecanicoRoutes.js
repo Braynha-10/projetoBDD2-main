@@ -48,6 +48,13 @@ router.post('/', async (req, res) => {
 
 // Proteger todas as rotas abaixo
 router.use(authMiddleware);
+
+//painel do mecânico
+router.get('/painelMecanico', (req, res) => {
+    const {mecanico} =  req.session;
+    res.render('mecanico/painelMecanico', {mecanico});
+})
+
 // Veiculos --------------------------------------------------------------------------------------------------------------------------------------
 
 // Home veiculo
@@ -165,7 +172,7 @@ router.patch('/servicos/:id', async (req, res) => {
 
     try {
         await Servico.update({ id_mecanico, id_veiculo, id_servico, id_peca, id_pagamento, descricao, status }, { where: { id } });
-        res.redirect('/mecanico'); // Redireciona para painel do mecânico
+        res.redirect('/mecanico/painelMecanico');  // Redireciona para painel do mecanico
     } catch (error) {
         console.error('Erro ao atualizar Serviço:', error);
         res.status(500).send('Erro ao atualizar serviço');
@@ -178,7 +185,7 @@ router.delete('/servicos/:id', async (req, res) => {
 
     try {
         await Servico.destroy({ where: { id } });
-        res.redirect('/mecanico'); // Redireciona para painel do mecânico
+        res.redirect('/mecanico/painelMecanico');  // Redireciona para painel do mecanico
     } catch (error) {
         console.error('Erro ao deletar Serviço:', error);
         res.status(500).send('Erro ao deletar serviço');
@@ -197,7 +204,7 @@ router.post('/logout', (req, res) => {
             return res.status(500).json({ error: 'Erro ao encerrar a sessão' });
         }
         res.clearCookie('connect.sid'); // Limpa o cookie da sessão
-        res.json({ message: 'Logout realizado com sucesso' });
+        res.redirect('/');  // Redireciona para o inicio
     });
 });
 

@@ -24,6 +24,13 @@ module.exports = {
         preco: 350.00,
         createdAt: Sequelize.fn('NOW'),
         updatedAt: Sequelize.fn('NOW')
+      },
+      {
+        nome: 'Pino do coquilho',
+        descricao: 'Pino do coquilho traseiro do guindaste zulein 75',
+        preco: 600.00,
+        createdAt: Sequelize.fn('NOW'),
+        updatedAt: Sequelize.fn('NOW')
       }
     ]);
   },

@@ -34,14 +34,12 @@
                         <td><%= mecanico.especialidade %></td>
                         <td><%= mecanico.salario %></td>
                         <td><%= mecanico.comissao %></td>
-                        <td><a href="/gerente/mecanico/editar/<%=mecanico.id%>" class="botao">Editar</a></td>
-                        <td><button class="botao" onclick="openModal(<%= mecanico.id %>)">Deletar</button></td>
+                        <td><a href="/gerente/mecanico/editar/<%=mecanico.id%>" class="btn btn-warning">Editar</a></td>
+                        <td><button class="btn btn-danger" onclick="openModal(<%= mecanico.id %>)">Deletar</button></td>
                     </tr>
                 <% }); %>
             </tbody>
         </table>
-
-        <button onclick="redirectHomeGerente()">Home</button>
 </body>
 
 <!-- Modal Deletar-->

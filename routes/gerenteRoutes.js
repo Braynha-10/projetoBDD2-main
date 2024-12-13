@@ -18,31 +18,27 @@ router.get('/', (req, res) => {
     res.render('gerente/loginGerente', {gerente});
 });
 
-router.get('/painelGerente', (req, res) => {
-    const {gerente} =  req.session;
-    res.render('gerente/painelGerente', {gerente});
-})
 
 router.post('/', async (req, res) => {
     const { email, senha } = req.body;
     console.log('Requisição recebida:', req.body);
-
+    
     try {
         // Verifique as credenciais no banco de dados
         const gerente = await Gerente.findOne({ where: { email } });
-
+        
         //confere e covalida a senha encriptografada 
         if (!gerente || !bcrypt.compareSync(senha, gerente.senha)) {
             return res.status(401).render('gerente/loginGerente', { error: 'Credenciais inválidas' });
         }
-
+        
         // Salva o gerente na sessão
         req.session.gerente = {
             id: gerente.id,
             email: gerente.email,
             nome: gerente.nome,
         };
-
+        
         // Renderiza o painel do gerente
         res.render('gerente/painelGerente', { gerente });
     } catch (error) {
@@ -53,6 +49,12 @@ router.post('/', async (req, res) => {
 
 // Proteger todas as rotas abaixo
 router.use(authMiddlewareGerente);
+
+//painel do gerente
+router.get('/painelGerente', (req, res) => {
+    const {gerente} =  req.session;
+    res.render('gerente/painelGerente', {gerente});
+})
 
 //Rotas Controle do Mecanico
 router.get('/mecanico/cadastro', async (req, res) => {
@@ -140,6 +142,20 @@ router.get('/gerentes/editar/:id', gerenteController.getEditarGerente);
 router.patch('/gerentes/:id', gerenteController.atualizarGerente);
 
 
+// Logout
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('index');
+});
 
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Erro ao encerrar a sessão' });
+        }
+        res.clearCookie('connect.sid'); // Limpa o cookie da sessão
+        res.redirect('/');  // Redireciona para o inicio
+    });
+});
 
 module.exports = router;

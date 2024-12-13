@@ -10,36 +10,54 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-align-center">
-            <form action="<%= gerente ? `/gerente/gerentes/${gerente.id}?_method=PATCH` : '/gerente/gerentes/cadastro' %>" method="<%= gerente ? 'post' : 'post' %>">
-                <div class="col-md-6">
-                    <input type="hidden" name="_method" value="<%= gerente ? 'PATCH' : 'POST' %>">
-                    <label for="Nome" class="form-label">
-                        Nome: <input type="text" name="nome" id="nome" value="<%= gerente ? gerente.nome: "" %>" required>
-                    </label>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container col-11 col-sm-8 col-md-6 col-lg-4">
+            <h1 class="text-center mb-4"><%= gerente ? 'Editar Gerente' : 'Cadastrar Gerente' %></h1>
+            <form action="<%= gerente ? `/gerente/gerentes/${gerente.id}?_method=PATCH` : '/gerente/gerentes/cadastro' %>" method="POST">
+                <!-- Hidden Input para Method Override -->
+                <input type="hidden" name="_method" value="<%= gerente ? 'PATCH' : 'POST' %>">
+
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" name="nome" id="nome" class="form-control" 
+                           value="<%= gerente ? gerente.nome : "" %>" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="Telefone" class="form-label">
-                        Telefone: <input type="text" name="telefone" id="telefone" class="form-control" value="<%= gerente ? gerente.telefone: "" %>" required>
-                    </label>
+
+                <!-- Telefone -->
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <input type="text" name="telefone" id="telefone" class="form-control" 
+                           value="<%= gerente ? gerente.telefone : "" %>" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="Salario" class="form-label">
-                        Salario: <input type="number" name="salario" id="salario" class="form-control" value="<%= gerente ? gerente.salario: "" %>" required>
-                    </label>
+
+                <!-- Salário -->
+                <div class="mb-3">
+                    <label for="salario" class="form-label">Salário:</label>
+                    <input type="number" name="salario" id="salario" class="form-control" 
+                           value="<%= gerente ? gerente.salario : "" %>" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="Email" class="form-label">
-                        Email: <input type="text" name="email" id="email" class="form-control" value="<%= gerente ? gerente.email: "" %>" required>
-                    </label>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control" 
+                           value="<%= gerente ? gerente.email : "" %>" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="Senha" class="form-label">
-                        Senha: <input type="text" name="senha" id="senha" class="form-control" value="<%= gerente ? gerente.senha: "" %>" required>
-                    </label>
+
+                <!-- Senha -->
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input type="password" name="senha" id="senha" class="form-control" 
+                           value="<%= gerente ? gerente.senha : "" %>" required>
                 </div>
-                    <input type="submit" value="Cadastrar" class="botao">
+
+                <!-- Botão de Envio -->
+                <div class="text-center">
+                    <button type="submit" class="botao w-100">
+                        <%= gerente ? 'Salvar Alterações' : 'Cadastrar' %>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
