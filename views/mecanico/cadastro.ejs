@@ -66,12 +66,16 @@
                         <input type="number" name="comissao" id="comissao" class="form-control" 
                                value="<%= mecanico ? mecanico.comissao : "" %>" required>
                     </div>
-                    
+
                     <!-- Botão de Envio -->
                     <div class="text-center">
                         <button type="submit" class="botao">
                             <%= mecanico ? 'Salvar Alterações' : 'Cadastrar' %>
                         </button>
+                    </div>
+                    <br><br>
+                    <div class="d-flex justify-content-end">
+                        <a href="/gerente/painelGerente" class="btn btn-danger">Voltar</a>
                     </div>
                 </form>
             </div>

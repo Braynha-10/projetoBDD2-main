@@ -60,5 +60,16 @@
             <% }); %>
         </tbody>
     </table>
+    <% if (typeof mecanico !== 'undefined' && mecanico) { %>
+        <br><br>
+        <div class="d-flex justify-content-center">
+            <a href="/mecanico/painelMecanico" class="btn btn-danger">Voltar</a>
+        </div>
+    <% } else { %>
+        <br><br>
+        <div class="d-flex justify-content-center">
+            <a href="/gerente/painelGerente" class="btn btn-danger">Voltar</a>
+        </div>
+    <% } %>
 </body>
 </html>

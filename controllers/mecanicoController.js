@@ -275,7 +275,7 @@ exports.listandoSolicitacoesServicos = async(req, res, id) => {
             ]
         });
         const gerente = false
-        res.render('servico/listaServicos', { Servico: servicos, gerente });
+        res.render('servico/listaServicos', { Servico: servicos, gerente, mecanico: req.session.mecanico });
     } catch (error) {
         console.error('Erro ao listar as solicitações de serviço: ', error);
         res.status(500).send("Erro ao listar as solicitações de serviço");
@@ -313,7 +313,7 @@ exports.listarSolitacoesPecas = async(req, res) => {
             ]
         });
         const gerente = false;
-        res.render('peca/listaPeca', { pecas, gerente });
+        res.render('peca/listaPeca', { pecas, gerente, mecanico: req.session.mecanico });
     } catch (error) {
         console.error('Erro ao listar as solicitações de peças: ', error);
         res.status(500).send('Erro ao listar as solicitações de peças');
