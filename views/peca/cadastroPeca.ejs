@@ -17,16 +17,33 @@
         <div class="row">
             <p>Antes de solicitar veja se pecas ja possui cadastro na nossa base de dados:</p>
         </div>
-        <div class="row">
-             <!-- Listagem pecas -->
-            <label for="id_peca">Catálogo de Pecas:</label>
-            <select name="id_peca" id="id_peca" required>
+
+        <!-- Listagem de Peças em Tabela -->
+        <label for="id_peca">Catálogo de Peças:</label>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- <th>Selecionar</th> -->
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
                 <% pecas.forEach(peca => { %>
-                    <option value="<%= peca.id %>"><%= peca.nome %><%=peca.preco%></option>
+                    <tr>
+                        <!-- <td>
+                            <input type="radio" name="id_peca" id="peca_<%= peca.id %>" value="<%= peca.id %>" required>
+                        </td> -->
+                        <td><%= peca.id %></td>
+                        <td><%= peca.nome %></td>
+                        <td>R$ <%= peca.preco.toFixed(2) %></td>
+                    </tr>
                 <% }); %>
-            </select>
-        </div>
+            </tbody>
+        </table>
         <div>
+            <p>Se não encontrou a peça desejada, preencha o formulário abaixo para solicitar uma nova peça:</p>
             <br>
             <p>Criacao da solicitacao</p>
             <form action="/mecanico/pecas" method="POST">

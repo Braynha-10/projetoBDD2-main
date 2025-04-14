@@ -8,6 +8,12 @@
     <!-- CSS Específico -->
     <link rel="stylesheet" href="/public/painel.css">
 </head>
+<style>
+    .secao {
+    display: none; /* Todas as seções começam escondidas */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    }
+</style>
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="container text-center">
@@ -17,34 +23,50 @@
             <h1>Painel do Gerente</h1>
             <h3>Bem vindo Gerente: <%= gerente.nome %></h3>
             <br>
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <p>Cadastro mecânico <a class="botao" href="/gerente/mecanico/cadastro">Clique aqui</a></p>
+            <div class="container">
+                <div class="row">
+                    <!-- Botões para alternar entre as seções -->
+                    <div class="col-6 d-flex justify-content-center mb-3">
+                        <button class="botao btn-lg w-75" onclick="mostrarSecao('mecanicos')">Mecânicos</button>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center mb-3">
+                        <button class="botao btn-lg w-75" onclick="mostrarSecao('pecas')">Peças</button>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center mb-3">
+                        <button class="botao btn-lg w-75" onclick="mostrarSecao('servicos')">Serviços</button>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center mb-3">
+                        <button class="botao btn-lg w-75" onclick="mostrarSecao('solicitacoes')">Solicitações</button>
+                    </div>
                 </div>
-                <div class="col-12 mb-2">
+            
+                <!-- Seção Mecânicos -->
+                <div id="mecanicos" class="secao text-center">
+                    <h2>Seção Mecânicos</h2>
+                    <p>Cadastro de mecânicos <a class="botao" href="/gerente/mecanico/cadastro">Clique aqui</a></p>
                     <p>Listar mecânicos para folha salarial <a class="botao" href="/gerente/mecanico/listar">Clique aqui</a></p>
                 </div>
-                <div class="col-12 mb-2">
-                    <p>Cadastro gerente <a class="botao" href="/gerente/gerentes/cadastro">Clique aqui</a></p>
-                </div>
-                <div class="col-12 mb-2">
-                    <p>Listar gerentes <a class="botao" href="/gerente/gerentes/listar">Clique aqui</a></p>
-                </div>
-                <div class="col-12 mb-2">
+            
+                <!-- Seção Peças -->
+                <div id="pecas" class="secao text-center" style="display: none;">
+                    <h2>Seção Peças</h2>
                     <p>Cadastro de peças <a class="botao" href="/gerente/pecas/cadastro">Clique aqui</a></p>
-                </div>
-                <div class="col-12 mb-2">
                     <p>Listar peças <a class="botao" href="/gerente/pecas/listar">Clique aqui</a></p>
                 </div>
-                <div class="col-12 mb-2">
+            
+                <!-- Seção Serviços -->
+                <div id="servicos" class="secao text-center" style="display: none;">
+                    <h2>Seção Serviços</h2>
                     <p>Listagem dos serviços para balanceamento de lucro e custo <a class="botao" href="/gerente/servicos/listar">Clique aqui</a></p>
                 </div>
-                <div class="col-12 mb-2">
+            
+                <!-- Seção Solicitações -->
+                <div id="solicitacoes" class="secao text-center" style="display: none;">
+                    <h2>Seção Solicitações</h2>
                     <p>Listagem de solicitações de peças <a class="botao" href="/gerente/pecas/solicitacoes">Clique aqui</a></p>
-                </div>
-                <div class="col-12 mb-2">
                     <p>Listar solicitações de serviço <a class="botao" href="/gerente/servicos/solicitacoes">Clique aqui</a></p>
                 </div>
+            </div>
                 <!-- <div class="col-12 mb-2">
                     <p>Listar serviços <a class="botao" href="/gerente/servicos/listarServicos">Clique aqui</a></p>
                 </div> -->
@@ -80,4 +102,17 @@
         const exitModal = document.getElementById('exitModal');
         exitModal.style.display = 'none';
     };
+
+    function mostrarSecao(secaoId) {
+        // Esconde todas as seções
+        const secoes = document.querySelectorAll('.secao');
+        secoes.forEach(secao => secao.style.display = 'none');
+
+        // Mostra apenas a seção selecionada
+        const secaoSelecionada = document.getElementById(secaoId);
+        if (secaoSelecionada) {
+            secaoSelecionada.style.display = 'block';
+        }
+    }
+
 </script>
