@@ -27,8 +27,12 @@
                     <input type="number" id="ano" name="ano" value="<%= Veiculo.ano %>" class="form-control" placeholder="Digite o ano do veículo" required>
                 </div>
                 <div class="mb-3">
-                    <label for="id_cliente" class="form-label">ID do Cliente:</label>
-                    <input type="number" id="id_cliente" name="id_cliente" value="<%= Veiculo.id_cliente %>" class="form-control" placeholder="Digite o ID do cliente" required>
+                    <label for="id_cliente">Cliente:</label>
+                    <select name="id_cliente" id="id_cliente" required>
+                        <% clientes.forEach(cliente => { %>
+                            <option value="<%= cliente.id %>"><%= cliente.nome %></option>
+                        <% }); %>
+                    </select>
                 </div>
                 <button type="submit" class="botao">Salvar</button>
                 <br><br>

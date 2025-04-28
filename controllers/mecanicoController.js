@@ -55,13 +55,14 @@ exports.editarVeiculo = async(req, res) => {
     const { id } = req.params;
 
     try {
+        const clientes = await Cliente.findAll(); // Busca todos os clientes
         // Buscar o veículo pelo ID
         const veiculo = await Veiculo.findByPk(id);
         if (!veiculo) {
             return res.status(404).send('Veículo não encontrado');
         }
         // Renderizar a view de edição com os dados do veículo
-        res.render('veiculo/editarVeiculo', { Veiculo: veiculo });
+        res.render('veiculo/editarVeiculo', { Veiculo: veiculo, clientes });
     } catch (error) {
         console.error('Erro ao buscar veículo:', error);
         res.status(500).send('Erro ao buscar veículo');
