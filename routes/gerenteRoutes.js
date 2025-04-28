@@ -86,7 +86,7 @@ router.get('/mecanico/listar', gerenteController.listarMecanicos);
 
 //Rotas Controle das Pecas
 router.get('/pecas/cadastro', async (req, res) => {
-    const peca = await Peca.findOne();
+    const peca = null
     res.render('pecas/cadastro', {peca});
 });
 

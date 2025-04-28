@@ -11,7 +11,7 @@
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="container col-11 col-sm-8 col-md-6 col-lg-4">
-            <h1 class="text-center mb-4"><%= peca ? 'Editar Peça' : 'Cadastrar Peça' %></h1>
+            <h1 class="text-center mb-4"><%= peca!=null ? 'Editar Peça' : 'Cadastrar Peça' %></h1>
             <form action="<%= peca ? `/gerente/pecas/modifica/${peca.id}?_method=PATCH` : '/gerente/pecas/cadastro' %>" method="POST">
                 <!-- Hidden Input para Method Override -->
                 <input type="hidden" name="_method" value="<%= peca ? 'PATCH' : 'POST' %>">

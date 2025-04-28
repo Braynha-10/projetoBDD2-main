@@ -18,6 +18,7 @@
             <tr>
                 <th>Mecanico</th>
                 <th>Veiculo</th>
+                <th>Cliente</th>
                 <th>Nome da Peça</th>
                 <th>Tipo de Pagamento</th>
                 <th>Desconto</th>
@@ -34,6 +35,7 @@
                 <tr>
                     <td><%= servico.Mecanico.nome%></td>
                     <td><%= servico.Veiculo.modelo %></td>
+                    <td><%= servico.Veiculo.Cliente.nome %></td>
                     <td><%= servico.Peca.nome  || ""%></td>
                     <% if(servico.tipo_pagamento == 0) {%>
                         <td>Credito</td>
