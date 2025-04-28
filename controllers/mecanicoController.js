@@ -1,4 +1,4 @@
-const { Veiculo, Cliente, Pagamento, Servico, Mecanico, Catalogo, Peca, Solicitacoes_servico, Solicitacoes_peca } = require('../models'); // Importação dos modelos de dados
+const { Sequelize, Veiculo, Cliente, Pagamento, Servico, Mecanico, Catalogo, Peca, Solicitacoes_servico, Solicitacoes_peca } = require('../models'); // Importação dos modelos de dados
 
 // Veiculos --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -251,13 +251,22 @@ exports.listarServicos = async(req, res, id) => {
         //         required: true
         //     },
         // });
+  
+        // Busca veículos atribuídos ao mecânico ou sem nenhum serviço atribuído
         const veiculos = await Veiculo.findAll({
-            include: {
-                model: Servico, 
-                where: { id_mecanico: id},
-                required: true,
-            }
-        })
+            include: [
+                {
+                    model: Servico,
+                    required: false, // Inclui veículos mesmo sem serviços
+                    where: {
+                        [Sequelize.Op.or]: [
+                            { id_mecanico: id }, // Serviços atribuídos ao mecânico atual
+                            { id_mecanico: null } // Veículos sem mecânico atribuído
+                        ]
+                    }
+                }
+            ]
+        });
         const pecas = await Peca.findAll();
         const mecanico = req.session.mecanico; // Assume que o usuário está autenticado
         
