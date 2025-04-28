@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const {authMiddleware} = require('../middlewares/authMiddleware');
 const { Veiculo, Cliente, Pagamento, Servico, Peca, Mecanico, Catalogo, Solicitacoes_servico, Solicitacoes_peca} = require('../models'); // Importação dos modelos de dados
-const { listandoVeiculos, listarServicosEmAndamento, finalizarServicosEmAndamento,cadastroVeiculo, atualizandoVeiculo, deletaVeiculo, cadastroCliente, atualizandoCliente, deletaCliente, editarVeiculo, listarClientesMecanico, listarServicos, listandoSolicitacoesServicos, solicitarServico, listarSolitacoesPecas, solicitarPeca, editarCliente } = require('../controllers/mecanicoController');
+const { homeVeiculo,listandoVeiculos, listarServicosEmAndamento, finalizarServicosEmAndamento,cadastroVeiculo, atualizandoVeiculo, deletaVeiculo, cadastroCliente, atualizandoCliente, deletaCliente, editarVeiculo, listarClientesMecanico, listarServicos, listandoSolicitacoesServicos, solicitarServico, listarSolitacoesPecas, solicitarPeca, editarCliente } = require('../controllers/mecanicoController');
 
 // router.get('/', authMiddleware, (req, res) => {
 //     if (req.user.userType !== 'mecanico') {
@@ -59,7 +59,7 @@ router.get('/painelMecanico', (req, res) => {
 
 // Home veiculo
 router.get('/veiculo', (req, res) => {
-    res.render('veiculo/cadastroVeiculo');
+    homeVeiculo(req, res);
 });
 
 // listar veiculos

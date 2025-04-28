@@ -2,6 +2,11 @@ const { Veiculo, Cliente, Pagamento, Servico, Mecanico, Catalogo, Peca, Solicita
 
 // Veiculos --------------------------------------------------------------------------------------------------------------------------------------
 
+exports.homeVeiculo = async(req, res) => {
+    const clientes = await Cliente.findAll(); // Busca todos os clientes
+    res.render('veiculo/cadastroVeiculo', { clientes });
+};
+
 exports.listandoVeiculos = async(req, res, id) => {
     // Veiculo.findAll().then(veiculo => {
     //     res.render('veiculo/listaVeiculos', {Veiculo: veiculo});
