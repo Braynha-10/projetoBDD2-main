@@ -12,7 +12,7 @@ module.exports = {
         updatedAt: Sequelize.fn('NOW')
       },
       {
-        nome: 'Pasta de Freio',
+        nome: 'Pastilha de Freio',
         descricao: 'Pastilhas de freio de alta qualidade para garantir uma frenagem eficiente e segura.',
         preco: 200.00,
         createdAt: Sequelize.fn('NOW'),
@@ -26,9 +26,23 @@ module.exports = {
         updatedAt: Sequelize.fn('NOW')
       },
       {
-        nome: 'Pino do coquilho',
+        nome: 'Pino do Coquilho',
         descricao: 'Pino do coquilho traseiro do guindaste zulein 75',
         preco: 600.00,
+        createdAt: Sequelize.fn('NOW'),
+        updatedAt: Sequelize.fn('NOW')
+      },
+      {
+        nome: 'Pneu R15',
+        descricao: 'Pneu 175/70 R15',
+        preco: 360.00,
+        createdAt: Sequelize.fn('NOW'),
+        updatedAt: Sequelize.fn('NOW')
+      },
+      {
+        nome: 'Oléo 5W30',
+        descricao: 'Oléo de motor 5W30 para veículos de passeio, garantindo a lubrificação adequada do motor.',
+        preco: 80.00,
         createdAt: Sequelize.fn('NOW'),
         updatedAt: Sequelize.fn('NOW')
       }

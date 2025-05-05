@@ -39,7 +39,9 @@
                         <label for="id_peca">Peças:</label>
                         <select name="id_peca" id="id_peca" class="form-control" required>
                             <% pecas.forEach(peca => { %>
-                                <option value="<%= peca.id %>"><%= peca.nome %></option>
+                                <option value="<%= peca.id %>">
+                                    <%= peca.nome %> - Qtd.: 3
+                                </option>
                             <% }); %>
                         </select>
                     </div>
