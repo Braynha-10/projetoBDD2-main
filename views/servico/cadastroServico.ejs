@@ -40,12 +40,12 @@
                         <select name="id_peca" id="id_peca" class="form-control" required>
                             <% pecas.forEach(peca => { %>
                                 <option value="<%= peca.id %>">
-                                    <%= peca.nome %> - Qtd.: 3
+                                    <%= peca.nome %> - <%= peca?.Estoque?.quantidade %>/<%= peca?.Estoque?.capacidade %>
                                 </option>
                             <% }); %>
                         </select>
                     </div>
-
+                    <%= console.log(pecas[0]) %>
                     <!-- Seleção de pagamento -->
                     <div class="form-group">
                         <label for="pagamento">Pagamento:</label>

@@ -1,4 +1,4 @@
-const { Sequelize, Veiculo, Cliente, Pagamento, Servico, Mecanico, Catalogo, Peca, Solicitacoes_servico, Solicitacoes_peca } = require('../models'); // Importação dos modelos de dados
+const { Sequelize, Veiculo, Cliente, Pagamento, Servico, Mecanico, Catalogo, Peca, Solicitacoes_servico, Solicitacoes_peca, Estoque } = require('../models'); // Importação dos modelos de dados
 
 // Veiculos --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -194,13 +194,13 @@ exports.listarServicosEmAndamento = async(req, res) => {
         const servicos = await Servico.findAll({
             where: {id_mecanico: id, status: 'Pendente'},
             include: [
-                { model: Veiculo, include: Cliente },
+                {model: Veiculo, include: Cliente },
                 {model: Catalogo},
-                {model: Peca},
+                {model: Peca, include: Estoque},
                 {model: Mecanico},
             ]
         })
-        // console.log(servicos);
+        // console.log('teste: ', servicos);
 
         if(!servicos){
             return  res.status(404).send('Sem servicos para este cliente');
@@ -267,10 +267,14 @@ exports.listarServicos = async(req, res, id) => {
                 }
             ]
         });
-        const pecas = await Peca.findAll();
+        const pecas = await Peca.findAll(
+            {
+                include: Estoque,
+            }
+        );
         const mecanico = req.session.mecanico; // Assume que o usuário está autenticado
         
-        console.log(mecanico);
+        console.log(pecas[0].Estoque);
 
         res.render('servico/cadastroServico', { catalogos, mecanico, veiculos, pecas });
     } catch (error) {

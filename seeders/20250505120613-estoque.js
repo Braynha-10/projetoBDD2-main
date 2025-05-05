@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('estoque', [
+    await queryInterface.bulkInsert('estoques', [
       {
         produtoId: 1, // Referência à peça com ID 1 (Filtro de Óleo)
         quantidade: 5,
